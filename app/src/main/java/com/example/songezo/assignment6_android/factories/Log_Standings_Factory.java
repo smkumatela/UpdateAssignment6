@@ -30,12 +30,13 @@ public class Log_Standings_Factory {
     }
 
 
-    public static Log_Standings createLogStandings(Map<String, Integer> values){
+    public static Log_Standings createLogStandings(Map<String, Integer> values, Long id){
         Log_Standings log = new Log_Standings.Builder()
                 .teamName("teamName")
                 .gamesPlayed(values.get("Played"))
                 .gamesWon(values.get("Won")).gamesDrawn(values.get("Drawn"))
                 .gamesLost(values.get("Lost")).points(values.get("Points"))
+                .id(123456L)
                 .build();
         return log;
     }

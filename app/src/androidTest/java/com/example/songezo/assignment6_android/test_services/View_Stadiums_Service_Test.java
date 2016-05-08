@@ -21,7 +21,6 @@ import java.util.Map;
  */
 public class View_Stadiums_Service_Test extends AndroidTestCase {
     private View_Stadium_Service_Impl stadiumService;
-    private Stadium_Repository repository;
     private Boolean isBound;
 
     @Override

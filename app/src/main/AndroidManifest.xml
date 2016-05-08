@@ -40,6 +40,10 @@
         <service
             android:name=".services.Impl.View_Stadium_Service_Impl"
             android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.View_LogStandings_Service_Impl"
+            android:enabled="true"
             android:exported="true"></service>
     </application>
 
