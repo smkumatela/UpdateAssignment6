@@ -3,12 +3,12 @@
     package="com.example.songezo.assignment6_android">
 
     <application
-        android:debuggable="true"
+        android:name=".conf.util.App"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.example.songezo.assignment6_android.conf.util.App"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity_Login"
@@ -20,6 +20,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".services.Impl.Add_PremierSoccerLeague_Service_Impl"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.View_Tournament_Service_Impl"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.View_Sponsor_Service_Impl"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.View_Team_Service_Impl"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.View_Stadium_Service_Impl"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class App extends Application {
 
     public static App singleton;
 
-    public void ocCreate(){
+    public void onCreate(){
         super.onCreate();
         App.context = getApplicationContext();
         singleton = this;

@@ -29,6 +29,7 @@ public class Stadium_Factory {
         Stadium stadium = new Stadium.Builder()
                 .name(values.get("name"))
                 .location(values.get("England"))
+                .id(12345L)
                 .build();
         return stadium;
     }
