@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.songezo.assignment6_android.MainActivity_Login">
+    tools:context=".activities.MainActivity_Login">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

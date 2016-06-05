@@ -7,6 +7,7 @@ import android.os.IBinder;
 
 import com.example.songezo.assignment6_android.conf.util.App;
 import com.example.songezo.assignment6_android.conf.util.DomainState;
+import com.example.songezo.assignment6_android.conf.util.GlobalContext;
 import com.example.songezo.assignment6_android.domain.Log_Standings;
 import com.example.songezo.assignment6_android.domain.Stadium;
 import com.example.songezo.assignment6_android.factories.Log_Standings_Factory;
@@ -15,19 +16,31 @@ import com.example.songezo.assignment6_android.repository.Log_Standings_Reposito
 import com.example.songezo.assignment6_android.services.View_LogStandings_Services;
 
 import java.util.Map;
+import java.util.Set;
 
 public class View_LogStandings_Service_Impl extends Service implements View_LogStandings_Services {
 
+    private final Log_Standings_Repository logStandingsRepository;
+
     private final IBinder localBinder = new View_LogStandings_Service_LocalBinder();
-    private Log_Standings_Repository repo;
+
+    private static View_LogStandings_Service_Impl service = null;
+
+    public static View_LogStandings_Service_Impl getInstance(){
+        if (service == null)
+            service = new View_LogStandings_Service_Impl();
+        return service;
+    }
 
     public View_LogStandings_Service_Impl() {
+        logStandingsRepository = new Log_Standings_Repository_Impl(App.getAppContext());
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        //throw new UnsupportedOperationException("Not yet implemented");
+        return localBinder;
     }
 
     public class View_LogStandings_Service_LocalBinder extends Binder{
@@ -37,30 +50,18 @@ public class View_LogStandings_Service_Impl extends Service implements View_LogS
     }
 
     @Override
-    public String viewLog(Map<String, Integer> values, Long id) {
-        if (true){
-            Log_Standings log_standings = Log_Standings_Factory.createLogStandings(values, id);
-            return DomainState.ACTIVATED.name();
-        }
-        else
-        {
-            return DomainState.NOTACTIVATED.name();
-        }
+    public Log_Standings findById(Long id) {
+        return logStandingsRepository.findById(id);
     }
 
     @Override
-    public Boolean isLogViewed() {
-        return repo.findAll().size() > 0;
+    public Log_Standings save(Log_Standings entity) {
+        return logStandingsRepository.save(entity);
     }
 
     @Override
-    public Boolean destroyLog() {
-        int rows = repo.deleteAll();
-        return rows > 0;
+    public Set<Log_Standings> findAll() {
+        return logStandingsRepository.findAll();
     }
 
-    private Log_Standings createLogStandings(Log_Standings log_standings){
-        repo = new Log_Standings_Repository_Impl(App.getAppContext());
-        return repo.save(log_standings);
-    }
 }

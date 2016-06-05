@@ -8,11 +8,16 @@ import android.os.IBinder;
 import android.test.AndroidTestCase;
 
 import com.example.songezo.assignment6_android.conf.util.App;
+import com.example.songezo.assignment6_android.conf.util.GlobalContext;
+import com.example.songezo.assignment6_android.domain.Sponsor;
+import com.example.songezo.assignment6_android.factories.Sponsor_Factory;
 import com.example.songezo.assignment6_android.services.Impl.View_Sponsor_Service_Impl;
 
 import junit.framework.Assert;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Songezo on 2016-05-07.
@@ -20,12 +25,19 @@ import java.util.Map;
 public class View_Sponsor_Test extends AndroidTestCase {
     private View_Sponsor_Service_Impl sponsorService;
     private Boolean isBound;
+    private static final String TAG = "SPONSOR TEST";
+
+    Map<String, String> values;
+    Long id;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         Intent intent = new Intent(App.getAppContext(), View_Sponsor_Service_Impl.class);
+        GlobalContext.context = this.getContext();
+        sponsorService = View_Sponsor_Service_Impl.getInstance();
         App.getAppContext().bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        values = new HashMap<>();
     }
 
     public ServiceConnection connection = new ServiceConnection() {
@@ -33,7 +45,7 @@ public class View_Sponsor_Test extends AndroidTestCase {
         public void onServiceConnected(ComponentName name, IBinder service) {
             View_Sponsor_Service_Impl.View_Sponsor_Service_LocalBinder binder
                     = (View_Sponsor_Service_Impl.View_Sponsor_Service_LocalBinder) service;
-            sponsorService = binder.getSponsor();
+            sponsorService = binder.getService();
             isBound = true;
         }
 
@@ -43,18 +55,29 @@ public class View_Sponsor_Test extends AndroidTestCase {
         }
     };
 
-    public void testViewSponsor(Map<String, String> values, Long id) throws Exception {
-        String viewSponsor = sponsorService.viewSponsor(values, id);
-        Assert.assertEquals("VIEWED", viewSponsor);
+    public void testCreateEntity() throws Exception {
+        values.put("name", "Nike");
+        values.put("sponsors", "Ronaldo");
+        id = 12325L;
+        Sponsor sponsorEntity = Sponsor_Factory.createSponsor(values, id);
+        Sponsor newSponsor = sponsorService.save(sponsorEntity);
+        Assert.assertNotNull(newSponsor);
     }
 
-    public void testIsSponsorViewed() throws Exception {
-        Boolean viewing = sponsorService.isSponsorViewed();
-        Assert.assertEquals("VIEWED", viewing);
-    }
+    public void testCreateAndFindListOfEntities() throws Exception {
+        values.put("name", "Pumma");
+        values.put("sponsors", "Parker");
+        id = 12335L;
+        Sponsor sponsor1 = Sponsor_Factory.createSponsor(values, id);
+        sponsorService.save(sponsor1);
 
-    public void testdetroySponsor() throws Exception {
-        Boolean destroy = sponsorService.destroySponsor();
-        Assert.assertEquals("DESTROYED", destroy);
+        values.put("name", "ADIDAS");
+        values.put("sponsors", "Isa Sar");
+        id = 12345L;
+        Sponsor sponsor2 = Sponsor_Factory.createSponsor(values, id);
+        sponsorService.save(sponsor2);
+
+        Set<Sponsor> sponsorSet = sponsorService.findAll();
+        Assert.assertTrue(sponsorSet.size() > 1);
     }
 }

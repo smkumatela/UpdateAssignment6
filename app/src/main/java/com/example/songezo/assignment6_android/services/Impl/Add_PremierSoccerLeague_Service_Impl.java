@@ -7,6 +7,7 @@ import android.os.IBinder;
 
 import com.example.songezo.assignment6_android.conf.util.App;
 import com.example.songezo.assignment6_android.conf.util.DomainState;
+import com.example.songezo.assignment6_android.conf.util.GlobalContext;
 import com.example.songezo.assignment6_android.domain.PremierSoccerLeague;
 import com.example.songezo.assignment6_android.factories.PremierSoccerLeague_Factory;
 import com.example.songezo.assignment6_android.repository.Impl.PremierSoccerLeague_Repository_Impl;
@@ -14,14 +15,24 @@ import com.example.songezo.assignment6_android.repository.PremierSoccerLeague_Re
 import com.example.songezo.assignment6_android.services.Add_PremierSoccerLeague_Service;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Add_PremierSoccerLeague_Service_Impl extends Service implements Add_PremierSoccerLeague_Service {
 
+    private final PremierSoccerLeague_Repository pslRepository;
+
     private final IBinder localBinder = new AddPremierSoccerLeagueLocalBinder();
 
-    private PremierSoccerLeague_Repository repo;
+    private static Add_PremierSoccerLeague_Service_Impl service = null;
+
+    public static Add_PremierSoccerLeague_Service_Impl getInstance(){
+        if (service == null)
+            service = new Add_PremierSoccerLeague_Service_Impl();
+        return service;
+    }
 
     public Add_PremierSoccerLeague_Service_Impl() {
+        pslRepository = new PremierSoccerLeague_Repository_Impl(App.getAppContext());
     }
 
     @Override
@@ -38,31 +49,18 @@ public class Add_PremierSoccerLeague_Service_Impl extends Service implements Add
     }
 
     @Override
-    public String create_league(Map<String, String> values) {
-        if (true){
-            PremierSoccerLeague premierSoccerLeague = PremierSoccerLeague_Factory
-                    .createPremierSoccerLeague(values);
-            return DomainState.ACTIVATED.name();
-        }
-        else {
-            return DomainState.NOTACTIVATED.name();
-        }
+    public PremierSoccerLeague findById(Long id) {
+        return pslRepository.findById(id);
     }
 
     @Override
-    public boolean isLeagueCreated() {
-        return repo.findAll().size() > 0;
+    public PremierSoccerLeague save(PremierSoccerLeague entity) {
+        return pslRepository.save(entity);
     }
 
     @Override
-    public boolean destroyLeague() {
-        int rows = repo.deleteAll();
-        return rows > 0;
-    }
-
-    private PremierSoccerLeague createPremierSoccerrLeague(PremierSoccerLeague premierSoccerLeagues){
-        repo = new PremierSoccerLeague_Repository_Impl(App.getAppContext());
-        return repo.save(premierSoccerLeagues);
+    public Set<PremierSoccerLeague> findAll() {
+        return pslRepository.findAll();
     }
 
 }

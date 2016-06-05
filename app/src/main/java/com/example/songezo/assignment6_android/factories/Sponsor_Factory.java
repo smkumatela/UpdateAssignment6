@@ -29,6 +29,7 @@ public class Sponsor_Factory {
         Sponsor sponsor = new Sponsor.Builder()
                 .name(value.get("name"))
                 .sponsors(value.get("sponsors"))
+                .id(12349L)
                 .build();
 
         return sponsor;

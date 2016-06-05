@@ -71,12 +71,13 @@ public class PremierSoccerLeague_Factory {
         leagueName = builder.leagueName;
     }
 
-    public static PremierSoccerLeague createPremierSoccerLeague(Map<String, String> values){
+    public static PremierSoccerLeague createPremierSoccerLeague(Map<String, String> values, Long id){
         PremierSoccerLeague premierSoccerLeague = new PremierSoccerLeague
                 .Builder()
                 .leagueName(values.get("LeagueName"))
                 .abbreviation(values.get("abbreviation"))
                 .stadium(values.get("stadium"))
+                .id(12339L)
                 .build();
         return premierSoccerLeague;
     }

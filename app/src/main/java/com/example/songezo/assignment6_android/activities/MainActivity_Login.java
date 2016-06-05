@@ -1,5 +1,6 @@
-package com.example.songezo.assignment6_android;
+package com.example.songezo.assignment6_android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.songezo.assignment6_android.R;
 
 public class MainActivity_Login extends AppCompatActivity {
 
@@ -37,6 +40,16 @@ public class MainActivity_Login extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void onButtonClick(View v){
+        if (v.getId() == R.id.bLogin){
+            EditText edit = (EditText) findViewById(R.id.TFusername);
+            String str = edit.getText().toString();
+            Intent i = new Intent(MainActivity_Login.this, Fields_Activity.class);
+            i.putExtra("Username", str);
+            startActivity(i);
+        }
     }
 
     @Override

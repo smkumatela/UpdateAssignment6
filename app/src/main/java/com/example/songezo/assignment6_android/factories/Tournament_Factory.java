@@ -9,13 +9,7 @@ import com.example.songezo.assignment6_android.domain.Tournaments;
 public class Tournament_Factory {
 
     private Long id;
-//    private String tName;
-//    private int numOfTeams;
-//    private double prizeMoney;
-//
-//    Tournaments tournaments;
 
-    //private static TechnicalTeam_Factory technicalTeam = null;
     private static Tournament_Factory tournament = null;
 
     public Tournament_Factory() {
@@ -33,6 +27,7 @@ public class Tournament_Factory {
                 .tName(name)
                 .numOfTeams(numOfTeams)
                 .prizeMoney(prize)
+                .id(12379L)
                 .build();
         return tournament;
     }

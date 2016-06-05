@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Stadium_Factory {
 
-    private Long id;
+  /*  private Long id;
     private String name;
     private String location;
 
@@ -23,13 +23,13 @@ public class Stadium_Factory {
             stadium = new Stadium_Factory();
         }
         return stadium;
-    }
+    }*/
 
     public static Stadium createStadium(Map<String, String> values, Long id){
         Stadium stadium = new Stadium.Builder()
                 .name(values.get("name"))
-                .location(values.get("England"))
-                .id(12345L)
+                .location(values.get("location"))
+                .id(12359L)
                 .build();
         return stadium;
     }

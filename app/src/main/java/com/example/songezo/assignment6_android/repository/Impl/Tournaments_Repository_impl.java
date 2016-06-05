@@ -21,6 +21,7 @@ import java.util.Set;
  */
 public class Tournaments_Repository_impl extends SQLiteOpenHelper implements Tournaments_Repository{
 
+    public static final int DATABASE_VERSION = 1;
     public static final String TABLE_NAME = "TOURNAMENTS";
     private SQLiteDatabase db;
 
@@ -36,6 +37,7 @@ public class Tournaments_Repository_impl extends SQLiteOpenHelper implements Tou
             + COLUMN_NUM_OF_TEAMS + " TEXT NOT NULL , "
             + COLUMN_PRIZE_MONEY + " TEXT NOT NULL );";
 
+    //private static final String DATABASE_CREATE = "CREATE TABLE TOURNAMENTS (ID INTEGER PRIMARY "
 
     public Tournaments_Repository_impl(Context context) {
         super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);

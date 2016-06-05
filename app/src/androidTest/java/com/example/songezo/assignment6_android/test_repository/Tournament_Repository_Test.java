@@ -1,10 +1,18 @@
 package com.example.songezo.assignment6_android.test_repository;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.test.AndroidTestCase;
 
+import com.example.songezo.assignment6_android.conf.util.App;
 import com.example.songezo.assignment6_android.domain.Tournaments;
 import com.example.songezo.assignment6_android.repository.Impl.Tournaments_Repository_impl;
 import com.example.songezo.assignment6_android.repository.Tournaments_Repository;
+import com.example.songezo.assignment6_android.services.Impl.View_LogStandings_Service_Impl;
+import com.example.songezo.assignment6_android.services.Impl.View_Tournament_Service_Impl;
 
 import junit.framework.Assert;
 
@@ -53,4 +61,5 @@ public class Tournament_Repository_Test extends AndroidTestCase {
         Tournaments deletedEntity = repo.findById(id);
         Assert.assertNull(TAG+" DELETE ENTITY", deletedEntity);
     }
+
 }

@@ -1,6 +1,10 @@
 package com.example.songezo.assignment6_android.services;
 
+import com.example.songezo.assignment6_android.domain.PremierSoccerLeague;
+
 import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by Songezo on 2016-05-06.
  *
@@ -9,9 +13,9 @@ import java.util.Map;
  */
 public interface Add_PremierSoccerLeague_Service {
 
-    String create_league(Map<String, String> values);
+    PremierSoccerLeague findById(Long id);
 
-    boolean isLeagueCreated();
+    PremierSoccerLeague save(PremierSoccerLeague entity);
 
-    boolean destroyLeague();
+    Set<PremierSoccerLeague> findAll();
 }

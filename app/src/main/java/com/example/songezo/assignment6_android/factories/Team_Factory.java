@@ -34,6 +34,7 @@ public class Team_Factory {
                 .teamName(values.get("teamName"))
                 .teamNickName(values.get("nickName"))
                 .teamLocation(values.get("location"))
+                .id(12369L)
                 .build();
         return team1;
     }

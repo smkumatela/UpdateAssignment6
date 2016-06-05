@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Assignment6_Android</string>
     <string name="action_settings">Settings</string>
+    <string name="emptyString" />
+    <string name="emptyString1" />
+    <string name="emptyString2" />
+    <string name="emptyString3" />
+    <string name="empty1" />
+    <string name="empty2" />
+    <string name="empty3" />
 </resources>

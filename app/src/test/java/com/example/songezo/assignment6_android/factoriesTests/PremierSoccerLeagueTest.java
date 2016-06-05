@@ -15,9 +15,11 @@ import java.util.Map;
 public class PremierSoccerLeagueTest {
 
     Map<String, String> values;
+    Long id;
 
     @Before
     public void setUp() throws Exception {
+        id = 71421L;
         values = new HashMap<String, String>();
 
         values.put("abbreviation", "PSL");
@@ -29,7 +31,7 @@ public class PremierSoccerLeagueTest {
     @Test
     public void testCreatePremierSoccerLeague() throws Exception {
         PremierSoccerLeague premierSoccerLeague = PremierSoccerLeague_Factory
-                .createPremierSoccerLeague(values);
+                .createPremierSoccerLeague(values, id);
 
         Assert.assertEquals("Absa Premiership Soccer League", premierSoccerLeague.getLeagueName());
     }
@@ -37,7 +39,7 @@ public class PremierSoccerLeagueTest {
     @Test
     public void testUpdatePremierSoccerLegue() throws Exception {
         PremierSoccerLeague premierSoccerLeague = PremierSoccerLeague_Factory
-                .createPremierSoccerLeague(values);
+                .createPremierSoccerLeague(values, id);
         PremierSoccerLeague newPremierSoccerLeague = new PremierSoccerLeague.Builder()
                 .leagueName(premierSoccerLeague.getLeagueName())
                 .abbreviation(premierSoccerLeague.getAbbreviation())

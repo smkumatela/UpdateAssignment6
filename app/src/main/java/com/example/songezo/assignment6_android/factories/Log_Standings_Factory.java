@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Log_Standings_Factory {
 
-   private Long id;
+    private Long id;
     private String teamName;
     private int gamesPlayed;
     private int gamesWon;
@@ -36,7 +36,7 @@ public class Log_Standings_Factory {
                 .gamesPlayed(values.get("Played"))
                 .gamesWon(values.get("Won")).gamesDrawn(values.get("Drawn"))
                 .gamesLost(values.get("Lost")).points(values.get("Points"))
-                .id(123456L)
+                .id(12329L)
                 .build();
         return log;
     }
